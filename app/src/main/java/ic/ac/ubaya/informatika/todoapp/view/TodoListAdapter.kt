@@ -1,8 +1,10 @@
 package ic.ac.ubaya.informatika.todoapp.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import ic.ac.ubaya.informatika.todoapp.R
 import ic.ac.ubaya.informatika.todoapp.model.Todo
@@ -17,22 +19,31 @@ class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Any) ->
         val view = inflater.inflate(R.layout.todo_item_layout, parent, false)
 
         return TodoViewHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int)
     {
         holder.view.checkTask.setText(todoList[position].title.toString())
-        holder.view.checkTask.setOnCheckedChangeListener { compoundButton, b ->
-            adapterOnClick(todoList[position])
+        holder.view.imgEdit.setOnClickListener {
+            val action =
+                TodoListFragmentDirections.actionEditTodoFragment(todoList[position].uuid)
+
+            Navigation.findNavController(it).navigate(action)
         }
 
+        holder.view.checkTask.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if(isChecked) {
+                adapterOnClick(todoList[position])
+            }
+        }
+        Log.d("Check todo",todoList[position].title.toString())
     }
 
     fun updateTodoList(newTodoList: List<Todo>) {
-        todoList.clear()
+        //todoList.clear()
         todoList.addAll(newTodoList)
         notifyDataSetChanged()
+        Log.d("Check todo",newTodoList.toString())
     }
 
 

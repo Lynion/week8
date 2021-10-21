@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import ic.ac.ubaya.informatika.todoapp.util.MIGRATION_1_2
 
-@Database(entities = arrayOf(Todo::class),version = 1)
+@Database(entities = arrayOf(Todo::class),version = 2)
 abstract class TodoDatabase:RoomDatabase() {
     abstract  fun todoDao():TodoDao
 
@@ -14,7 +15,8 @@ abstract class TodoDatabase:RoomDatabase() {
         private val LOCK = Any()
 
         private fun buildDatabase(context:Context) =
-            Room.databaseBuilder(context.applicationContext,TodoDatabase::class.java,"tododb").build()
+            Room.databaseBuilder(context.applicationContext,TodoDatabase::class.java,"tododb").addMigrations(
+                MIGRATION_1_2).build()
         operator fun invoke(context:Context) {
             if(instance!=null) {
                 synchronized(LOCK) {
