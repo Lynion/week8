@@ -36,14 +36,12 @@ class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Any) ->
                 adapterOnClick(todoList[position])
             }
         }
-        Log.d("Check todo",todoList[position].title.toString())
     }
 
     fun updateTodoList(newTodoList: List<Todo>) {
-        //todoList.clear()
+        todoList.clear()
         todoList.addAll(newTodoList)
         notifyDataSetChanged()
-        Log.d("Check todo",newTodoList.toString())
     }
 
 

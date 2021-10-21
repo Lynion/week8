@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import ic.ac.ubaya.informatika.todoapp.util.MIGRATION_1_2
 
-@Database(entities = arrayOf(Todo::class),version = 2)
+@Database(entities = arrayOf(Todo::class),version = 3)
 abstract class TodoDatabase:RoomDatabase() {
     abstract  fun todoDao():TodoDao
 

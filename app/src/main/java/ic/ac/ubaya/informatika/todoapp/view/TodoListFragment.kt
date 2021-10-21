@@ -55,7 +55,6 @@ class TodoListFragment : Fragment() {
             } else {
                 textEmpty.visibility = View.GONE
             }
-            Log.d("Check todo",it.toString())
         })
     }
 
