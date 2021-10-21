@@ -13,6 +13,9 @@ interface TodoDao {
     @Query("SELECT * FROM todo WHERE uuid= :id")
     suspend fun selectTodo(id:Int): Todo
 
+    @Query("UPDATE todo SET isDone= 1 Where uuid = :id" )
+        suspend fun update(id: Int)
+
     @Delete
     suspend fun deleteTodo(todo:Todo)
 

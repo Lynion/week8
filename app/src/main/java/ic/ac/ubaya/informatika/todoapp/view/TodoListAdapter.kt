@@ -10,7 +10,7 @@ import ic.ac.ubaya.informatika.todoapp.R
 import ic.ac.ubaya.informatika.todoapp.model.Todo
 import kotlinx.android.synthetic.main.todo_item_layout.view.*
 
-class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Any) -> Unit)
+class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Int) -> Unit)
     :RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>()  {
     class TodoViewHolder(var view:View): RecyclerView.ViewHolder(view)
 
@@ -33,7 +33,7 @@ class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Any) ->
 
         holder.view.checkTask.setOnCheckedChangeListener { compoundButton, isChecked ->
             if(isChecked) {
-                adapterOnClick(todoList[position])
+                adapterOnClick(todoList[position].uuid)
             }
         }
     }
