@@ -39,7 +39,6 @@ class ListTodoViewModel (application: Application)
             val db = buildDb(getApplication())
             db.todoDao().update(id)
             todoLD.value = db.todoDao().selectAllTodo()
-
         }
     }
 
