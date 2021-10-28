@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="todo" type="ic.ac.ubaya.informatika.todoapp.model.Todo" />
+        <variable name="listener" type="ic.ac.ubaya.informatika.todoapp.view.TodoCheckedChangeListener" />
+        <variable name="editListener" type="ic.ac.ubaya.informatika.todoapp.view.TodoEditClick" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,7 +21,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:text="CheckBox"
+        android:text="@{todo.title}"
+        android:onCheckedChanged="@{(cb, isChecked) -> listener.onCheckChanged(cb, isChecked, todo)}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +30,8 @@
 
     <ImageView
         android:id="@+id/imgEdit"
+        android:tag="@{todo.uuid}"
+        android:onClick="@{editListener::onTodoEditClick}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -28,4 +40,5 @@
         app:layout_constraintTop_toTopOf="@+id/checkTask"
         app:layout_constraintVertical_bias="0.458"
         app:srcCompat="@drawable/ic_baseline_edit_24" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout></layout>
+

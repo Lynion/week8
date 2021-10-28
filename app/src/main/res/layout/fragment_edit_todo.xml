@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="todo" type="ic.ac.ubaya.informatika.todoapp.model.Todo" />
+        <variable name="radioListener" type="ic.ac.ubaya.informatika.todoapp.view.RadioClick" />
+        <variable name="listener" type="ic.ac.ubaya.informatika.todoapp.view.TodoSaveChangesClick" />
+
+    </data>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CreateTodoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioGroup
+            android:id="@+id/radioGroupPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <RadioButton
+                android:id="@+id/radioHigh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="@{todo.priority==3?true:false}"
+                android:onClick="@{(view)->radioListener.onRadioClick(view,todo)}"
+                android:tag="3"
+                android:text="High" />
+
+            <RadioButton
+                android:id="@+id/radioMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="@{todo.priority==2?true:false}"
+                android:onClick="@{(view)->radioListener.onRadioClick(view,todo)}"
+                android:tag="2"
+                android:text="Medium" />
+
+            <RadioButton
+                android:id="@+id/radioLow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="@{todo.priority==1?true:false}"
+                android:onClick="@{(view)->radioListener.onRadioClick(view,todo)}"
+                android:tag="1"
+                android:text="Low" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtJudulTodo"
+            style="@style/TextAppearance.MaterialComponents.Headline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="128dp"
+            android:text="Edit ToDo"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Todo Title"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtJudulTodo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTitle"
+                android:text="@={todo.title}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Notes"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtNotes"
+                android:text="@={todo.notes}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:onClick=
+                "@{(view)->listener.onTodoSaveChangesClick(view,todo)}"
+            android:text="save changes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupPriority" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Priority"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout></layout>

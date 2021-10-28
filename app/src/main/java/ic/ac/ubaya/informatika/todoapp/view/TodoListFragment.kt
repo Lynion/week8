@@ -19,7 +19,7 @@ class TodoListFragment : Fragment() {
     private lateinit var viewModel:ListTodoViewModel
     private val todoListAdapter  = TodoListAdapter(arrayListOf(),{ item -> doClick(item) })
 
-    fun doClick(item:Int) {
+    fun doClick(item:Todo) {
         viewModel.clearTask(item)
     }
 

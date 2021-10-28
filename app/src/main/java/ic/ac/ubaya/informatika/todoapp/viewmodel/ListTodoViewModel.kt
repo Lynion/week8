@@ -34,10 +34,10 @@ class ListTodoViewModel (application: Application)
         }
     }
 
-    fun clearTask(id:Int) {
+    fun clearTask(id:Todo) {
         launch {
             val db = buildDb(getApplication())
-            db.todoDao().update(id)
+            db.todoDao().update(id.uuid)
             todoLD.value = db.todoDao().selectAllTodo()
         }
     }
